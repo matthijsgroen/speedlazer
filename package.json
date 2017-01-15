@@ -1,0 +1,17 @@
+{
+  "name": "speedlazer",
+  "version": "1.0.0",
+  "description": "2D Sidescrolling Shooter",
+  "main": "app/game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "author": "Matthijs Groen",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^2.2.0-rc.5",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
