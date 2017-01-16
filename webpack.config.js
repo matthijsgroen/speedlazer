@@ -18,17 +18,9 @@ module.exports = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
-  module: {
-    rules: [
-      {
-        test: /crafty/,
-        use: 'exports-loader?Crafty'
-      }
-    ]
-  },
   resolve: {
     alias: {
-      crafty: "craftyjs/dist/crafty"
+      crafty: './crafty-loader'
     }
   }
 };
