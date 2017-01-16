@@ -22,7 +22,7 @@ module.exports = {
     rules: [
       {
         test: /crafty/,
-        use: 'script-loader'
+        use: 'exports-loader?Crafty'
       }
     ]
   },
