@@ -20,7 +20,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      crafty: './crafty-loader'
+      crafty: path.join(__dirname, "app/crafty-loader")
     }
   }
 };

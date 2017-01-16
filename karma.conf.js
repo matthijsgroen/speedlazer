@@ -3,7 +3,7 @@
 module.exports = function(karma) {
   karma.set({
 
-    frameworks: [ 'mocha' ],
+    frameworks: [ 'mocha', 'chai' ],
 
     files: [
       'spec/spec_index.js'
