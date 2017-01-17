@@ -1,8 +1,7 @@
 /*
  * https://github.com/webpack/karma-webpack#alternative-usage
  *
- * Without this, karma and webpack don't play nice together since webpack
- * will compile a bundle with jquery, marionette etc for each spec file.
+ * Without this, karma and webpack don't play nice together since webpack.
  *
  * With this, all specs are compiled together. Single specs can be run with
  * mochas describe.only feature.
