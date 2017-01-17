@@ -1,5 +1,5 @@
 {
-  "name": "speedlazer",
+  "name": "my-new-crafty-game",
   "version": "1.0.0",
   "description": "2D Sidescrolling Shooter",
   "main": "app/game.js",
@@ -12,6 +12,10 @@
   },
   "author": "Matthijs Groen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthijsgroen/crafty-skeleton"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "exports-loader": "^0.6.3",
@@ -23,13 +27,11 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-webpack": "^2.0.1",
     "mocha": "^3.2.0",
-    "node-loader": "^0.6.0",
-    "script-loader": "^0.7.0",
     "spritesheet-js": "^1.2.6",
     "webpack": "^2.2.0-rc.5",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "crafty": "git+https://github.com/craftyjs/Crafty.git#0.8.0-rc2"
+    "crafty": "craftyjs/Crafty#0.8.0-rc2"
   }
 }
