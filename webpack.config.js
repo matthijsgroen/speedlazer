@@ -18,6 +18,18 @@ module.exports = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+      }
+    ]
+  },
   resolve: {
     alias: {
       crafty: path.join(__dirname, "app/crafty-loader")
