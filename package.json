@@ -1,6 +1,6 @@
 {
-  "name": "my-new-crafty-game",
-  "version": "1.0.0",
+  "name": "speedlazer",
+  "version": "2.0.0",
   "description": "2D Sidescrolling Shooter",
   "main": "app/game.js",
   "scripts": {
