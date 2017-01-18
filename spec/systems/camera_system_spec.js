@@ -1,5 +1,5 @@
 import Crafty from 'crafty';
-import { template } from 'app/components/camera_system';
+import { template } from 'app/systems/camera_system';
 
 describe('CameraSystem', () => {
   let cameraSystem;
