@@ -4,6 +4,21 @@ import 'app/components/camera_relative_motion';
 Crafty.init(800,600, document.getElementById('game'));
 Crafty.background('#000');
 
+Crafty.createLayer('UILayerDOM', 'DOM', {
+  scaleResponse: 0,
+  yResponse: 0,
+  xResponse: 0,
+  z: 40
+})
+
+Crafty.e('2D, UILayerDOM, Text').attr({
+  x: 50,
+  y: 20,
+  w: 400,
+  h: 20
+}).textColor('#FF0').text('Player 1: 0');
+
+
 Crafty.e('2D, WebGL, Color').attr({
   x: 200,
   y: 200,
