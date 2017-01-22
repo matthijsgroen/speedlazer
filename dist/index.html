@@ -1,9 +1,32 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <style>
+      html, body {
+        margin: 0;
+      }
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      body {
+        background: #000;
+        margin: 0;
+      }
+      #game {
+        transform-origin: top left;
+      }
+    </style>
   </head>
   <body>
-    <div id="game"></div>
+    <div id="theater">
+      <div id="game"></div>
+    </div>
+    <div id="footer"></div>
     <script type="text/javascript" src="game.js" charset="utf-8"></script>
   </body>
 </html>
