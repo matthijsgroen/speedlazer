@@ -5,7 +5,8 @@ import 'app/scenes/intro'
 import 'app/scenes/gameplay'
 import 'app/initializers/game_scaler'
 
-Crafty.init(1024,576, document.getElementById('game'))
+// Setup initial screen size and layers
+Crafty.init(1024, 576, document.getElementById('game'))
 Crafty.background('#000')
 
 Crafty.createLayer('UILayerDOM', 'DOM', {
@@ -15,6 +16,7 @@ Crafty.createLayer('UILayerDOM', 'DOM', {
   z: 40
 })
 
+// Load assets for intro screen
 Crafty.scene('Loading')
 
 // Control zooming

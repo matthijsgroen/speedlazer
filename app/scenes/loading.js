@@ -2,12 +2,20 @@ import Crafty from 'crafty'
 
 Crafty.defineScene("Loading", function() {
 
-  Crafty.background("#000");
-  Crafty.e("2D, DOM, Text")
-    .attr({ w: 600, h: 20, x: 0, y: 120 })
-    .text("Loading")
-    .textAlign("center")
-    .textColor("#FFFFFF")
+  const w = Crafty.viewport.width
+  const h = Crafty.viewport.height
+
+  Crafty.background("#000")
+  Crafty.e('2D, DOM, Text')
+    .attr({ x: 0, y: h / 2, w: w })
+    .text('Loading...')
+    .textColor('#333')
+    .textAlign('center')
+    .textFont({
+      size: '20px',
+      weight: 'bold',
+      family: 'Press Start 2P'
+    })
 
   // Crafty load code here
 

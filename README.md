@@ -1,6 +1,7 @@
-# Crafty.js game skeleton
+# Speedlazer, a 2D sidescrolling adventure
 
-Setup to start a new Crafty.js game.
+This is a work in progress engine to become the new
+engine behind SpeedLazer.
 
 It uses:
 
@@ -9,8 +10,8 @@ It uses:
 
 ## Usage
 
-- `npm i` install all dependencies
-- `npm start` start the game for development
-- `npm build` package game for release
-- `npm test` run tests
-- `npm run watch` keep tests running on file changes
+- `yarn` install all dependencies
+- `yarn start` start the game for development
+- `yarn build` package game for release
+- `yarn test` run tests
+- `yarn run watch` keep tests running on file changes
