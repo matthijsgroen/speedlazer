@@ -19,7 +19,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -27,6 +27,12 @@ module.exports = {
         query: {
           presets: ['es2015']
         }
+      }, {
+        test: /\.lazerscript$/,
+        use: [
+          './app/lazerscript/lazerscript-loader',
+          './app/lazerscript/lazerscript-compiler'
+        ]
       }
     ]
   },

@@ -1,0 +1,6 @@
+# Comment
+
+main:
+
+Scenery.update('Ocean')
+Camera.forceSpeed(20, 0)

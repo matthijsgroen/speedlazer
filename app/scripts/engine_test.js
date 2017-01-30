@@ -6,3 +6,7 @@ ScriptSystem().register('engine_test', {
     { s: 'Camera', c: 'forceSpeed', a: [20, 0] }
   ]
 });
+
+export default function executor(options) {
+  return ScriptSystem().execute('engine_test', options)
+}

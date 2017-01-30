@@ -1,13 +1,18 @@
 import Crafty from 'crafty'
-import 'app/scripts/engine_test';
+//import script from 'app/scripts/engine_test';
+import script from 'app/scripts/hello.lazerscript';
 
 import ScriptSystem from 'app/systems/script_system'
 import ScenerySystem from 'app/systems/scenery_system'
 
 Crafty.defineScene("Gameplay", function(data) {
-  ScriptSystem().execute(data.script).then((v) => {
+  //ScriptSystem().execute(data.script).then((v) => {
+    //console.log('Script executed', v);
+  //});
+
+  script().then((v) => {
     console.log('Script executed', v);
-  })
+  });
 
   Crafty.e('2D, UILayerDOM, Text').attr({
     x: 50,
