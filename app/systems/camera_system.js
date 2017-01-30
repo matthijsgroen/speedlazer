@@ -5,9 +5,15 @@ export const template = {
     this.camera = Crafty.e('2D, Motion, Tween');
   },
 
+  forceSpeed(x, y) {
+    this.camera.attr({ vx: x, vy: y })
+  },
+
   remove() {
     this.camera.destroy();
   },
 };
 
-export default Crafty.s('CameraSystem', template, {}, true);
+Crafty.s('Camera', template, {}, true);
+
+export default function CameraSystem() { return Crafty.s('Camera') };

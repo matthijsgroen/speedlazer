@@ -5,7 +5,7 @@ describe('CameraRelativeMotion', () => {
   let cameraRelativeMotion
 
   beforeEach(() => {
-    Crafty.s('CameraSystem').camera.attr({ vx: 0, vy: 0 })
+    Crafty.s('Camera').camera.attr({ vx: 0, vy: 0 })
     cameraRelativeMotion = Crafty.e('CameraRelativeMotion')
   })
 
@@ -16,13 +16,13 @@ describe('CameraRelativeMotion', () => {
   context("Moving with the camera", () => {
 
     it("Updates the vx", () => {
-      Crafty.s('CameraSystem').camera.vx = 10
+      Crafty.s('Camera').camera.vx = 10
 
       expect(cameraRelativeMotion.vx).to.eql(-10)
     })
 
     it("Updates the vy", () => {
-      Crafty.s('CameraSystem').camera.vy = 10
+      Crafty.s('Camera').camera.vy = 10
 
       expect(cameraRelativeMotion.vy).to.eql(-10)
     })
@@ -31,7 +31,7 @@ describe('CameraRelativeMotion', () => {
   context("Having different response", () => {
     it("Updates the vx", () => {
       cameraRelativeMotion.cameraRelativeMotion({ xResponse: 0.5 })
-      Crafty.s('CameraSystem').camera.vx = 10
+      Crafty.s('Camera').camera.vx = 10
 
       expect(cameraRelativeMotion.vx).to.eql(-5)
     })

@@ -1,11 +1,11 @@
 import Crafty from 'crafty';
-import 'app/systems/camera_system';
+import CameraSystem from 'app/systems/camera_system';
 
 Crafty.c('CameraRelativeMotion', {
 
   init() {
     this.requires('Motion');
-    this._cameraSystem = Crafty.s('CameraSystem');
+    this._cameraSystem = CameraSystem();
     this._xResponse = 1;
     this._yResponse = 1;
 

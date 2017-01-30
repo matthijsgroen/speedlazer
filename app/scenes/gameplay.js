@@ -1,6 +1,13 @@
 import Crafty from 'crafty'
+import 'app/scripts/engine_test';
 
-Crafty.defineScene("Gameplay", function() {
+import ScriptSystem from 'app/systems/script_system'
+import ScenerySystem from 'app/systems/scenery_system'
+
+Crafty.defineScene("Gameplay", function(data) {
+  ScriptSystem().execute(data.script).then((v) => {
+    console.log('Script executed', v);
+  })
 
   Crafty.e('2D, UILayerDOM, Text').attr({
     x: 50,
@@ -46,5 +53,4 @@ Crafty.defineScene("Gameplay", function() {
     z: 10
   }).color('#333')
 
-  Crafty.s('CameraSystem').camera.attr({ vx: 20 })
 })
