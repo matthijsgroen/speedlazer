@@ -1,8 +1,8 @@
 module.exports = function(content) {
-  console.log('LOADER', content, this.resource);
+  let filename = this.resource.split("/").slice(-1)[0].split(".")[0]
   return '' +
     'var ScriptSystem = require("app/systems/script_system");' +
-    'ScriptSystem.default().register("hello", ' + content + ');' +
+    'ScriptSystem.default().register("'+ filename + '", ' + content + ');' +
 
     'module.exports = function(params) { return ScriptSystem.default().execute("hello", params); }';
 }

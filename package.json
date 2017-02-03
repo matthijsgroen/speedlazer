@@ -36,6 +36,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "crafty": "craftyjs/Crafty#0.8.0-rc2"
+    "crafty": "craftyjs/Crafty#0.8.0-rc2",
+    "when": "^3.7.7"
   }
 }

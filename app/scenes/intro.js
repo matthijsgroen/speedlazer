@@ -3,7 +3,7 @@ import Crafty from 'crafty'
 Crafty.defineScene("Intro", function() {
   Crafty.e('Keyboard, 2D').bind('KeyDown', function() {
     // Adding 2D will auto destroy when scene is removed
-    if (this.isDown('SPACE')) Crafty.scene('Gameplay', { script: 'engine_test' })
+    if (this.isDown('SPACE')) Crafty.scene('Gameplay', { script: 'stage1' })
   })
 
   const w = Crafty.viewport.width

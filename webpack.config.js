@@ -31,7 +31,6 @@ module.exports = {
         test: /\.lazerscript$/,
         use: [
           './app/lazerscript/lazerscript-loader',
-          './app/lazerscript/lazerscript-compiler'
         ]
       }
     ]

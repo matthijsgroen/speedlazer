@@ -1,4 +1,4 @@
-import Crafty from 'crafty';
+import Crafty from 'crafty'
 
 export const template = {
   init() {
