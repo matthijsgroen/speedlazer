@@ -17,15 +17,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/matthijsgroen/crafty-skeleton"
+    "url": "https://github.com/matthijsgroen/speedlazer"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
-    "babel-core": "^6.21.0",
     "babel-eslint": "^7.2.3",
-    "babel-loader": "^6.2.10",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-jsx": "^6.8.0",
@@ -55,7 +53,8 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "crafty": "craftyjs/Crafty#0.8.0-rc2",
+    "crafty": "craftyjs/Crafty#0.8.0",
+    "craftyjs": "craftyjs/Crafty#0.8.0",
     "when": "^3.7.7"
   }
 }
