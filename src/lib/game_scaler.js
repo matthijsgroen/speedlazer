@@ -10,6 +10,6 @@ const scaleGame = () => {
   const ratio = Math.min(ratioY, ratioX);
 
   gameElement.style.transform = "scale(" + ratio + ")";
-}
+};
 
 export default scaleGame;

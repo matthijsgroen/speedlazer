@@ -10,7 +10,7 @@
     "lint": "eslint spec/ src/",
     "watch": "karma start --watch",
     "start": "webpack-dev-server --open",
-    "prettier": "prettier --write src/**/*",
+    "prettier": "prettier --write src/**/*.js src/*.js",
     "build": "webpack"
   },
   "author": "Matthijs Groen",
@@ -53,7 +53,6 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "crafty": "craftyjs/Crafty#0.8.0",
     "craftyjs": "craftyjs/Crafty#0.8.0",
     "when": "^3.7.7"
   }

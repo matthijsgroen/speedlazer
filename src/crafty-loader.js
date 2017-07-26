@@ -1,6 +1,6 @@
-import 'crafty/dist/crafty';
+import "crafty/dist/crafty";
 
 var Crafty = window.Crafty;
-delete window['Crafty'];
+delete window["Crafty"];
 
-export default Crafty
+export default Crafty;
