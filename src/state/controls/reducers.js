@@ -17,4 +17,3 @@ const controlReducers = (state = initial, action) => {
 };
 
 export default controlReducers;
-

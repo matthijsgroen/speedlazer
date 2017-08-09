@@ -14,8 +14,7 @@ store.dispatch(createPlayer(1));
 import { addControlScheme } from "./state/controls/actions";
 
 Crafty.c("ControlScheme", {
-  init: function() {
-  },
+  init: function() {},
   fire: function() {
     //console.log("fire!", down);
   },

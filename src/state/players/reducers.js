@@ -7,7 +7,7 @@ const playerReducers = (state = initial, action) => {
     return state.concat({
       playerId: action.playerId,
       score: 0,
-      constrolSet: null,
+      constrolSet: null
     });
   }
   return state;
