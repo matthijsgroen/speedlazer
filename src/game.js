@@ -1,6 +1,7 @@
 import Crafty from "crafty";
 import scaleGame from "./lib/game_scaler";
-//import store from "./state";
+import store from "./state";
+import { createPlayer } from "./state/players/actions";
 
 // Setup initial screen size and layers
 Crafty.init(1024, 576, document.getElementById("game"));
@@ -8,15 +9,38 @@ Crafty.background("#000");
 
 window.addEventListener("resize", scaleGame);
 setTimeout(scaleGame, 0);
+store.dispatch(createPlayer(1));
+
+import { addControlScheme } from "./state/controls/actions";
+const controlScheme = Crafty.c("ControlScheme", {
+  init: function() {
+  },
+  fire: function(down) {
+    console.log("fire!", down);
+  },
+  controlScheme: function(identifier) {
+    this.controlIdentifier = identifier;
+    store.dispatch(addControlScheme(identifier));
+  }
+});
+
+const keyboardControls = Crafty.e("Keyboard, ControlScheme")
+  .bind("KeyDown", function(e) {
+    if (e.key === Crafty.keys.SPACE) this.fire(true);
+  })
+  .bind("KeyUp", function(e) {
+    if (e.key === Crafty.keys.SPACE) this.fire(false);
+  })
+  .controlScheme("keyboard1");
 
 //Crafty.e("2D, WebGL, Color")
-//.attr({
-//x: 10,
-//y: 10,
-//w: 30,
-//h: 20
-//})
-//.color("#FF0000");
+  //.attr({
+    //x: 10,
+    //y: 10,
+    //w: 30,
+    //h: 20
+  //})
+  //.color("#FF0000");
 
 /*
  * reactive flow... ?
