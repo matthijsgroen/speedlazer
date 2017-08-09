@@ -12,11 +12,12 @@ setTimeout(scaleGame, 0);
 store.dispatch(createPlayer(1));
 
 import { addControlScheme } from "./state/controls/actions";
-const controlScheme = Crafty.c("ControlScheme", {
+
+Crafty.c("ControlScheme", {
   init: function() {
   },
-  fire: function(down) {
-    console.log("fire!", down);
+  fire: function() {
+    //console.log("fire!", down);
   },
   controlScheme: function(identifier) {
     this.controlIdentifier = identifier;
@@ -24,7 +25,7 @@ const controlScheme = Crafty.c("ControlScheme", {
   }
 });
 
-const keyboardControls = Crafty.e("Keyboard, ControlScheme")
+Crafty.e("Keyboard, ControlScheme")
   .bind("KeyDown", function(e) {
     if (e.key === Crafty.keys.SPACE) this.fire(true);
   })
@@ -34,13 +35,13 @@ const keyboardControls = Crafty.e("Keyboard, ControlScheme")
   .controlScheme("keyboard1");
 
 //Crafty.e("2D, WebGL, Color")
-  //.attr({
-    //x: 10,
-    //y: 10,
-    //w: 30,
-    //h: 20
-  //})
-  //.color("#FF0000");
+//.attr({
+//x: 10,
+//y: 10,
+//w: 30,
+//h: 20
+//})
+//.color("#FF0000");
 
 /*
  * reactive flow... ?
