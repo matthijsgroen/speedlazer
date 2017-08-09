@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "craftyjs": "craftyjs/Crafty#0.8.0",
+    "redux": "^3.7.2",
     "when": "^3.7.7"
   }
 }

@@ -1,4 +1,4 @@
-import "crafty/dist/crafty";
+import "craftyjs/dist/crafty";
 
 var Crafty = window.Crafty;
 delete window["Crafty"];
