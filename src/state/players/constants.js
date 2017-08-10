@@ -1,1 +1,2 @@
 export const CREATE_PLAYER = "CREATE_PLAYER";
+export const STATE_NO_CONTROLS = "STATE_NO_CONTROLS";

@@ -9,9 +9,12 @@ Crafty.background("#000");
 
 window.addEventListener("resize", scaleGame);
 setTimeout(scaleGame, 0);
-store.dispatch(createPlayer(1));
 
 import { addControlScheme } from "./state/controls/actions";
+import "./ui/player-ui";
+
+store.dispatch(createPlayer(1, "#FF0000"));
+store.dispatch(createPlayer(2, "#00FF00"));
 
 Crafty.c("ControlScheme", {
   init: function() {},

@@ -7,9 +7,7 @@ const controlReducers = (state = initial, action) => {
     return {
       ...state,
       [action.identifier]: {
-        fire: false,
-        player: null,
-        ship: null
+        fire: false
       }
     };
   }
