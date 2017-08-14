@@ -16,6 +16,9 @@ import {
   attachControls
 } from "./state/controls/actions";
 import "./ui/player-ui";
+import {
+  spawnShip
+} from "./state/ships/actions";
 
 store.dispatch(createPlayer(1, "#FF0000"));
 store.dispatch(createPlayer(2, "#00FF00"));
@@ -50,6 +53,7 @@ Crafty.c("ControlScheme", {
     ) {
       const player = this.state.availablePlayers[0];
       store.dispatch(attachControls(this.controlIdentifier, player.playerId));
+      store.dispatch(spawnShip(this.controlIdentifier, player.playerId));
     }
 
     // Maybe check if there is a weapon to fire or if firing weapons is enabled.
@@ -84,21 +88,29 @@ Crafty.c("ControlScheme", {
 
 Crafty.e("Keyboard, ControlScheme")
   .bind("KeyDown", function(e) {
-    if (e.key === Crafty.keys.SPACE) this.fire(true);
+    if (e.key === Crafty.keys.SPACE) this.fire(1);
+    if (e.key === Crafty.keys.UP_ARROW) this.up(1);
+    if (e.key === Crafty.keys.DOWN_ARROW) this.down(1);
+    if (e.key === Crafty.keys.LEFT_ARROW) this.left(1);
+    if (e.key === Crafty.keys.RIGHT_ARROW) this.right(1);
   })
   .bind("KeyUp", function(e) {
-    if (e.key === Crafty.keys.SPACE) this.fire(false);
+    if (e.key === Crafty.keys.SPACE) this.fire(0);
+    if (e.key === Crafty.keys.UP_ARROW) this.up(0);
+    if (e.key === Crafty.keys.DOWN_ARROW) this.down(0);
+    if (e.key === Crafty.keys.LEFT_ARROW) this.left(0);
+    if (e.key === Crafty.keys.RIGHT_ARROW) this.right(0);
   })
   .controlScheme("keyboard1");
 
-//Crafty.e("2D, WebGL, Color")
-//.attr({
-//x: 10,
-//y: 10,
-//w: 30,
-//h: 20
-//})
-//.color("#FF0000");
+Crafty.e("2D, WebGL, Color")
+  .attr({
+    x: 160,
+    y: 380,
+    w: 30,
+    h: 20
+  })
+  .color("#FF0000");
 
 /*
  * reactive flow... ?
