@@ -10,20 +10,60 @@ Crafty.background("#000");
 window.addEventListener("resize", scaleGame);
 setTimeout(scaleGame, 0);
 
-import { addControlScheme } from "./state/controls/actions";
+import {
+  addControlScheme,
+  controlAction,
+  attachControls
+} from "./state/controls/actions";
 import "./ui/player-ui";
 
 store.dispatch(createPlayer(1, "#FF0000"));
 store.dispatch(createPlayer(2, "#00FF00"));
 
+import "./components/connect";
+import "./components/props";
+
+const selectAttachedPlayer = (state, identifier) => {
+  const playerId = (state.controls[identifier] || {}).playerId;
+  if (!playerId) return null;
+  return state.players[playerId];
+};
+
+const selectAvailablePlayers = state => {
+  const result = [];
+  for (const playerId in state.players) {
+    const player = state.players[playerId];
+    if (!player.controlScheme) result.push(player);
+  }
+  return result;
+};
+
 Crafty.c("ControlScheme", {
-  init: function() {},
-  fire: function() {
-    //console.log("fire!", down);
+  init: function() {
+    this.requires("Connect, Props");
+  },
+  fire: function(down) {
+    if (
+      down &&
+      !this.state.attachedPlayer &&
+      this.state.availablePlayers.length
+    ) {
+      const player = this.state.availablePlayers[0];
+      store.dispatch(attachControls(this.controlIdentifier, player.playerId));
+    }
+
+    // Maybe check if there is a weapon to fire or if firing weapons is enabled.
+    if (this.state.attachedPlayer) {
+      store.dispatch(controlAction(this.controlIdentifier, { fire: down }));
+    }
   },
   controlScheme: function(identifier) {
     this.controlIdentifier = identifier;
     store.dispatch(addControlScheme(identifier));
+    this.mapState(state => ({
+      attachedPlayer: selectAttachedPlayer(state, this.controlIdentifier),
+      availablePlayers: selectAvailablePlayers(state)
+    }));
   }
 });
 

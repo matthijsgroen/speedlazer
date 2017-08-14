@@ -1,6 +1,7 @@
 import Crafty from "crafty";
 import "../components/connect";
 import "../components/props";
+import * as constants from "src/state/players/constants";
 
 Crafty.c("PlayerState", {
   init: function() {
@@ -26,28 +27,39 @@ Crafty.c("PlayerState", {
     return this;
   },
   updateState: function(newState) {
-    this.textColor(newState.color).text(`Player ${newState.playerId}`);
-    this.secondLine.textColor(newState.color).text("Press fire to start");
+    this.textColor(newState.color);
+    this.secondLine.textColor(newState.color);
+    switch (newState.state) {
+      case constants.STATE_NO_CONTROLS:
+        this.text(`Player ${newState.playerId}`);
+        this.secondLine.text("Press fire to start");
+        return;
+      case constants.STATE_PLAYING:
+        this.text(`Score: ${newState.score}`);
+        this.secondLine.text(`Health: ${newState.health}`);
+        return;
+    }
   }
 });
 
 const playerUIs = [];
 
 const updateUIs = players => {
-  for (let i in players) {
+  const playerArray = Object.values(players);
+  for (let i in playerArray) {
     let playerUI = playerUIs[i];
-    const playerProps = players[i];
+    const playerProps = playerArray[i];
     if (!playerUI) {
       playerUI = Crafty.e("Props, PlayerState").playerState(i);
       playerUIs.push(playerUI);
     }
     playerUI.props(playerProps);
   }
-  if (playerUIs.length > players.length) {
-    for (let c = players.length; c < playerUIs.length; c++) {
+  if (playerUIs.length > playerArray.length) {
+    for (let c = playerArray.length; c < playerUIs.length; c++) {
       playerUIs[c].destroy();
     }
-    playerUIs.splice(players.length);
+    playerUIs.splice(playerArray.length);
   }
 };
 

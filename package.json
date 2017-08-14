@@ -7,7 +7,7 @@
     "test": "eslint spec/ src/ && karma start --single-run",
     "browser-list": "browserslist --config=\"browserslist\"",
     "browser-coverage": "browserslist --coverage --config=\"browserslist\"",
-    "lint": "eslint spec/ src/",
+    "lint": "eslint spec/ src/ --fix",
     "watch": "karma start --watch",
     "start": "webpack-dev-server --open",
     "prettier": "prettier --write src/**/*.js src/*.js",
@@ -47,7 +47,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-webpack": "^2.0.1",
     "mocha": "^3.2.0",
-    "prettier": "^1.4.4",
+    "prettier": "^1.5.3",
     "spritesheet-js": "^1.2.6",
     "webpack": "^2.2.0-rc.5",
     "webpack-dev-server": "^1.16.2"

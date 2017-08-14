@@ -1,6 +1,7 @@
 import * as constants from "./constants";
+import * as controlConstants from "../controls/constants";
 
-const initial = [];
+const initial = {};
 const START_MAX_HEALTH = 3;
 
 const initialPlayer = {
@@ -12,11 +13,24 @@ const initialPlayer = {
 
 const playerReducers = (state = initial, action) => {
   if (action.type === constants.CREATE_PLAYER) {
-    return state.concat({
-      ...initialPlayer,
-      playerId: action.playerId,
-      color: action.color
-    });
+    return {
+      ...state,
+      [action.playerId]: {
+        ...initialPlayer,
+        playerId: action.playerId,
+        color: action.color
+      }
+    };
+  }
+  if (action.type === controlConstants.ATTACH_CONTROL_SCHEME) {
+    const playerState = state[action.playerId];
+    return {
+      ...state,
+      [action.playerId]: {
+        ...playerState,
+        state: constants.STATE_PLAYING
+      }
+    };
   }
   return state;
 };
