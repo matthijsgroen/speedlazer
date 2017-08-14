@@ -7,5 +7,5 @@ export const spawnShip = (controlScheme, playerId) => {
     id: guid(),
     controlScheme,
     playerId
-  }
+  };
 };

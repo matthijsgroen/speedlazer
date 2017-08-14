@@ -27,16 +27,16 @@ Crafty.c("PlayerState", {
     return this;
   },
   updateState: function(newState) {
-    this.textColor(newState.color);
-    this.secondLine.textColor(newState.color);
-    switch (newState.state) {
+    this.textColor(newState.player.color);
+    this.secondLine.textColor(newState.player.color);
+    switch (newState.player.state) {
       case constants.STATE_NO_CONTROLS:
-        this.text(`Player ${newState.playerId}`);
+        this.text(`Player ${newState.player.playerId}`);
         this.secondLine.text("Press fire to start");
         return;
       case constants.STATE_PLAYING:
-        this.text(`Score: ${newState.score}`);
-        this.secondLine.text(`Health: ${newState.health}`);
+        this.text(`Score: ${newState.player.score}`);
+        this.secondLine.text(`Health: ${newState.ship.health}`);
         return;
     }
   }
@@ -44,11 +44,15 @@ Crafty.c("PlayerState", {
 
 const playerUIs = [];
 
-const updateUIs = players => {
-  const playerArray = Object.values(players);
+const updateUIs = props => {
+  const playerArray = Object.values(props.players);
+  const shipsArray = Object.values(props.ships);
+
   for (let i in playerArray) {
     let playerUI = playerUIs[i];
-    const playerProps = playerArray[i];
+    const player = playerArray[i];
+    const ship = shipsArray.find(s => s.playerId === player.playerId);
+    const playerProps = { player, ship };
     if (!playerUI) {
       playerUI = Crafty.e("Props, PlayerState").playerState(i);
       playerUIs.push(playerUI);
@@ -64,8 +68,9 @@ const updateUIs = players => {
 };
 
 Crafty.e("PlayerUIs, Connect")
-  .bind("InitProps", props => updateUIs(props.players))
-  .bind("UpdatedProps", props => updateUIs(props.players))
+  .bind("InitProps", props => updateUIs(props))
+  .bind("UpdatedProps", props => updateUIs(props))
   .mapState(state => ({
-    players: state.players
+    players: state.players,
+    ships: state.ships
   }));

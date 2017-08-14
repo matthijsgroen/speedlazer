@@ -16,9 +16,8 @@ import {
   attachControls
 } from "./state/controls/actions";
 import "./ui/player-ui";
-import {
-  spawnShip
-} from "./state/ships/actions";
+import "./game/ships";
+import { spawnShip } from "./state/ships/actions";
 
 store.dispatch(createPlayer(1, "#FF0000"));
 store.dispatch(createPlayer(2, "#00FF00"));
@@ -52,8 +51,8 @@ Crafty.c("ControlScheme", {
       this.state.availablePlayers.length
     ) {
       const player = this.state.availablePlayers[0];
-      store.dispatch(attachControls(this.controlIdentifier, player.playerId));
       store.dispatch(spawnShip(this.controlIdentifier, player.playerId));
+      store.dispatch(attachControls(this.controlIdentifier, player.playerId));
     }
 
     // Maybe check if there is a weapon to fire or if firing weapons is enabled.
@@ -102,23 +101,3 @@ Crafty.e("Keyboard, ControlScheme")
     if (e.key === Crafty.keys.RIGHT_ARROW) this.right(0);
   })
   .controlScheme("keyboard1");
-
-Crafty.e("2D, WebGL, Color")
-  .attr({
-    x: 160,
-    y: 380,
-    w: 30,
-    h: 20
-  })
-  .color("#FF0000");
-
-/*
- * reactive flow... ?
- *
- * User input -> Action -> Reducer -> State
- *
- * Subscribe, substate. On change, update props of entity (vx, vy?)
- *
- * Goals: Setup, debug game state, log replays
- *
- */

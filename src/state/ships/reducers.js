@@ -20,7 +20,7 @@ const shipReducers = (state = initial, action) => {
         controlScheme: action.controlScheme,
         playerId: action.playerId
       }
-    }
+    };
   }
   return state;
 };
