@@ -1,6 +1,6 @@
 import "craftyjs/dist/crafty";
 
-var Crafty = window.Crafty;
+const Crafty = window.Crafty;
 delete window["Crafty"];
 
 export default Crafty;
