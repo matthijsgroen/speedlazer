@@ -42,9 +42,9 @@ Crafty.c("ControlScheme", {
   init: function() {
     this.requires("Connect, Props");
   },
-  fire: function(down) {
+  fire: function(value) {
     if (
-      down &&
+      value > 0 &&
       !this.state.attachedPlayer &&
       this.state.availablePlayers.length
     ) {
@@ -53,9 +53,24 @@ Crafty.c("ControlScheme", {
     }
 
     // Maybe check if there is a weapon to fire or if firing weapons is enabled.
-    if (this.state.attachedPlayer) {
-      store.dispatch(controlAction(this.controlIdentifier, { fire: down }));
-    }
+    if (!this.state.attachedPlayer) return;
+    store.dispatch(controlAction(this.controlIdentifier, { fire: value }));
+  },
+  up: function(value) {
+    if (!this.state.attachedPlayer) return;
+    store.dispatch(controlAction(this.controlIdentifier, { up: value }));
+  },
+  down: function(value) {
+    if (!this.state.attachedPlayer) return;
+    store.dispatch(controlAction(this.controlIdentifier, { down: value }));
+  },
+  left: function(value) {
+    if (!this.state.attachedPlayer) return;
+    store.dispatch(controlAction(this.controlIdentifier, { left: value }));
+  },
+  right: function(value) {
+    if (!this.state.attachedPlayer) return;
+    store.dispatch(controlAction(this.controlIdentifier, { right: value }));
   },
   controlScheme: function(identifier) {
     this.controlIdentifier = identifier;

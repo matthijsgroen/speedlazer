@@ -4,7 +4,11 @@ const initial = {};
 
 const initialControlState = {
   playerId: null,
-  fire: false
+  fire: 0,
+  up: 0,
+  down: 0,
+  left: 0,
+  right: 0
 };
 
 const controlReducers = (state = initial, action) => {
@@ -23,6 +27,16 @@ const controlReducers = (state = initial, action) => {
       [action.identifier]: {
         ...controlScheme,
         playerId: action.playerId
+      }
+    };
+  }
+  if (action.type === constants.CONTROL_ACTION) {
+    const controlScheme = state[action.identifier];
+    return {
+      ...state,
+      [action.identifier]: {
+        ...controlScheme,
+        ...action.props
       }
     };
   }
