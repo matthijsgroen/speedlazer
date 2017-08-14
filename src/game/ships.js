@@ -3,8 +3,9 @@ import Connect from "../components/connect";
 import Props from "../components/props";
 
 const playerShips = [];
+const ControllableShip = "ControllableShip";
 
-Crafty.c("ControllableShip", {
+Crafty.c(ControllableShip, {
   updateState: function({ controls }) {
     const xAxis = controls.right - controls.left;
     const yAxis = controls.down - controls.up;
@@ -26,7 +27,7 @@ const updateShips = props => {
     const shipProps = { ship, controls, player };
     if (!shipEntity) {
       shipEntity = Crafty.e(
-        ["2D", "WebGL", "Color", "ControllableShip", "Motion", Props].join(",")
+        ["2D", "WebGL", "Color", ControllableShip, "Motion", Props].join(",")
       )
         .attr({
           x: 160,
