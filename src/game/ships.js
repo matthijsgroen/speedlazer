@@ -1,6 +1,6 @@
 import Crafty from "crafty";
-import "../components/connect";
-import "../components/props";
+import Connect from "../components/connect";
+import Props from "../components/props";
 
 const playerShips = [];
 
@@ -25,7 +25,9 @@ const updateShips = props => {
     const player = props.players[ship.playerId];
     const shipProps = { ship, controls, player };
     if (!shipEntity) {
-      shipEntity = Crafty.e("2D, WebGL, Color, Props, ControllableShip, Motion")
+      shipEntity = Crafty.e(
+        ["2D", "WebGL", "Color", "ControllableShip", "Motion", Props].join(",")
+      )
         .attr({
           x: 160,
           y: 380,
@@ -45,7 +47,7 @@ const updateShips = props => {
   }
 };
 
-Crafty.e("Connect")
+Crafty.e(Connect)
   .bind("InitProps", props => updateShips(props))
   .bind("UpdatedProps", props => updateShips(props))
   .mapState(state => ({

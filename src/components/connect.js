@@ -1,7 +1,9 @@
 import store from "../state";
 import Crafty from "crafty";
 
-Crafty.c("Connect", {
+const Connect = "Connect";
+
+Crafty.c(Connect, {
   init: function() {
     this._unsubscribeConnect = () => {};
   },
@@ -21,3 +23,5 @@ Crafty.c("Connect", {
     return this;
   }
 });
+
+export default Connect;

@@ -1,6 +1,8 @@
 import Crafty from "crafty";
 
-Crafty.c("Props", {
+const Props = "Props";
+
+Crafty.c(Props, {
   init: function() {
     this.state = {};
     this.bind("InitProps", this.props);
@@ -14,3 +16,5 @@ Crafty.c("Props", {
     return this;
   }
 });
+
+export default Props;

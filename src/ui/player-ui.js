@@ -1,9 +1,11 @@
 import Crafty from "crafty";
-import "../components/connect";
-import "../components/props";
+import Connect from "../components/connect";
+import Props from "../components/props";
 import * as constants from "src/state/players/constants";
 
-Crafty.c("PlayerState", {
+const PlayerState = "PlayerState";
+
+Crafty.c(PlayerState, {
   init: function() {
     this.requires("2D, DOM, Text");
   },
@@ -54,7 +56,7 @@ const updateUIs = props => {
     const ship = shipsArray.find(s => s.playerId === player.playerId);
     const playerProps = { player, ship };
     if (!playerUI) {
-      playerUI = Crafty.e("Props, PlayerState").playerState(i);
+      playerUI = Crafty.e(Props, PlayerState).playerState(i);
       playerUIs.push(playerUI);
     }
     playerUI.props(playerProps);
@@ -67,7 +69,7 @@ const updateUIs = props => {
   }
 };
 
-Crafty.e("PlayerUIs, Connect")
+Crafty.e("PlayerUIs", Connect)
   .bind("InitProps", props => updateUIs(props))
   .bind("UpdatedProps", props => updateUIs(props))
   .mapState(state => ({
