@@ -1,9 +1,23 @@
-const path    = require('path');
-const webpack = require('webpack');
+const path    = require("path");
+const webpack = require("webpack");
+const babel   = require("./config/babel");
+const uglify  = require("./config/uglify");
+const env = process.env.NODE_ENV || "development";
+const isProd = env === "production";
+
+const plugins = [];
+
+if (isProd) {
+  plugins.push(
+    new webpack.LoaderOptionsPlugin({ minimize: true, debug: false }),
+    new webpack.optimize.UglifyJsPlugin(uglify)
+  );
+  babel.presets.push("babili");
+};
 
 module.exports = {
   entry: {
-    game: "./app/game.js"
+    game: "./src/game.js"
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -13,27 +27,23 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 9000
+    port: 9001
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
-  ],
+  plugins: plugins,
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
-        }
+        options: babel
       }
     ]
   },
   resolve: {
     alias: {
-      crafty$: path.join(__dirname, "app/crafty-loader"),
-      app: path.join(__dirname, "app")
+      crafty$: path.join(__dirname, "src/crafty-loader"),
+      src: path.join(__dirname, "src")
     }
   }
 };
