@@ -14,9 +14,6 @@ module.exports = {
         debug: true
       }
     ]
-  ],
-  plugins: [
-    "transform-class-properties"
   ]
 };
 
