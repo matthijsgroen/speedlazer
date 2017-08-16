@@ -6,7 +6,7 @@ engine behind SpeedLazer.
 It uses:
 
 - Webpack - Asset packaging
-- Karma / Mocha / Chai as test suite
+- Mocha / Chai as test suite
 
 ## Usage
 
@@ -14,4 +14,4 @@ It uses:
 - `yarn start` start the game for development
 - `yarn build` package game for release
 - `yarn test` run tests
-- `yarn run watch` keep tests running on file changes
+- `yarn run test:watch` keep tests running on file changes
