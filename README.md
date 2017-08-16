@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/matthijsgroen/speedlazer.svg?style=svg)](https://circleci.com/gh/matthijsgroen/speedlazer)
+
 # Speedlazer, a 2D sidescrolling adventure
 
 This is a work in progress engine to become the new
