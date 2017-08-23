@@ -1,6 +1,9 @@
 import Crafty from "crafty";
 import Connect from "../components/connect";
 import Props from "../components/props";
+import InScreen from "../systems/InScreen";
+
+InScreen.start();
 
 const playerShips = [];
 const ControllableShip = "ControllableShip";
@@ -16,24 +19,6 @@ Crafty.c(ControllableShip, {
       vx: xAxis * 200,
       vy: yAxis * 200
     });
-  }
-});
-
-const RemoveOutOfScreen = "RemoveOutOfScreen";
-
-Crafty.c(RemoveOutOfScreen, {
-  init: function() {
-    this.bind("EnterFrame", this.checkBoundaries);
-  },
-  removed: function() {
-    this.unbind("EnterFrame", this.checkBoundaries);
-  },
-  checkBoundaries: function() {
-    const inBounds = this.x < Crafty.viewport.x + Crafty.viewport.width;
-
-    if (!inBounds) {
-      this.destroy();
-    }
   }
 });
 
@@ -55,7 +40,7 @@ Crafty.c(WeaponSystems, {
     }
   },
   shoot: function() {
-    Crafty.e("2D, WebGL, Color, Motion, RemoveOutOfScreen")
+    Crafty.e("2D, WebGL, Color, Motion, OnlyInScreen")
       .attr({
         x: this.x + this.w,
         y: this.y + this.h / 2,
