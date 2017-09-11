@@ -1,8 +1,8 @@
 import alea from "seedrandom/lib/alea";
 import "seedrandom";
 
-export const seed = Math.seedrandom();
-export const random = new alea(seed);
+export const createSeed = () => Math.seedrandom();
+export const random = seed => new alea(seed);
 export const guid = () =>
   "xxxx-xxxx-4xxx-yxxx".replace(/[xy]/g, c => {
     const r = (random() * 16) | 0;

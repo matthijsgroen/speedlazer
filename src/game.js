@@ -17,6 +17,7 @@ import "./game/ships";
 store.dispatch(createPlayer(1, "#FF0000"));
 store.dispatch(createPlayer(2, "#00FF00"));
 
+// TODO: Add some smoothing by adding transition with .5 values between frames
 Crafty.e("Keyboard", ControlScheme)
   .bind("KeyDown", function(e) {
     if (e.key === Crafty.keys.SPACE) this.fire(1);
@@ -33,3 +34,8 @@ Crafty.e("Keyboard", ControlScheme)
     if (e.key === Crafty.keys.RIGHT_ARROW) this.right(0);
   })
   .controlScheme("keyboard1");
+
+Crafty.bind("StartGame", () => {
+  //console.log("Let the games begin!");
+  // Trigger scene switch
+});

@@ -15,7 +15,7 @@ const shipReducers = (state = initial, action) => {
   if (action.type === constants.SPAWN_SHIP) {
     return {
       ...state,
-      [action.id]: {
+      [action.playerId]: {
         ...initialShip,
         controlScheme: action.controlScheme,
         playerId: action.playerId
