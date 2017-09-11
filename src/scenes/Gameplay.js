@@ -2,8 +2,11 @@ import Crafty from "crafty";
 import createPlayerUI from "src/ui/player-ui";
 import "src/game/ships";
 
+let playerUI;
 Crafty.scene("Gameplay", () => {
-  createPlayerUI()
+  playerUI = createPlayerUI()
 
+}, () => {
+  playerUI.destroy();
 });
 

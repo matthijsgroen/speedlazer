@@ -69,7 +69,18 @@ const updateUIs = props => {
   }
 };
 
-const createPlayerUI = () => {
+Crafty.c("PlayerUIs", {
+  remove: function() {
+    if (playerUIs.length > 0) {
+      for (let c = 0; c < playerUIs.length; c++) {
+        playerUIs[c].destroy();
+      }
+      playerUIs.splice(0);
+    }
+  }
+});
+
+const createPlayerUI = () =>
   Crafty.e("PlayerUIs", Connect)
     .bind("InitProps", props => updateUIs(props))
     .bind("UpdatedProps", props => updateUIs(props))
@@ -77,6 +88,5 @@ const createPlayerUI = () => {
       players: state.players,
       ships: state.ships
     }));
-}
 
 export default createPlayerUI;

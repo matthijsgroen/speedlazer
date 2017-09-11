@@ -35,7 +35,8 @@ Crafty.e("Keyboard", ControlScheme)
   })
   .controlScheme("keyboard1");
 
-Crafty.scene("Intro");
+//Crafty.scene("Intro");
+Crafty.scene("Gameplay");
 
 Crafty.bind("StartGame", () => {
   Crafty.scene("Gameplay");
