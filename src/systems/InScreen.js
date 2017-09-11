@@ -18,8 +18,12 @@ Crafty.s(
     checkBoundaries: function() {
       const xLimit = Crafty.viewport.x + Crafty.viewport.width;
       Crafty("OnlyInScreen").each(function() {
-        const inBounds = this.x < xLimit;
-        if (!inBounds) this.destroy();
+        if (this.x > xLimit) {
+          if (!(this.vx < 0)) this.destroy();
+        }
+        if (this.x + this.w < 0) {
+          if (!(this.vx > 0)) this.destroy();
+        }
       });
     }
   },
