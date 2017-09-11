@@ -4,6 +4,7 @@ import store from "./state";
 import { createPlayer } from "./state/players/actions";
 import "src/scenes/Intro";
 import "src/scenes/Gameplay";
+import "src/scenes/Replay";
 
 // Setup initial screen size and layers
 Crafty.init(1024, 576, document.getElementById("game"));
@@ -35,8 +36,8 @@ Crafty.e("Keyboard", ControlScheme)
   })
   .controlScheme("keyboard1");
 
-//Crafty.scene("Intro");
-Crafty.scene("Gameplay");
+Crafty.scene("Intro");
+//Crafty.scene("Gameplay");
 
 Crafty.bind("StartGame", () => {
   Crafty.scene("Gameplay");
