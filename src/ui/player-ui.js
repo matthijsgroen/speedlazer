@@ -69,10 +69,14 @@ const updateUIs = props => {
   }
 };
 
-Crafty.e("PlayerUIs", Connect)
-  .bind("InitProps", props => updateUIs(props))
-  .bind("UpdatedProps", props => updateUIs(props))
-  .mapState(state => ({
-    players: state.players,
-    ships: state.ships
-  }));
+const createPlayerUI = () => {
+  Crafty.e("PlayerUIs", Connect)
+    .bind("InitProps", props => updateUIs(props))
+    .bind("UpdatedProps", props => updateUIs(props))
+    .mapState(state => ({
+      players: state.players,
+      ships: state.ships
+    }));
+}
+
+export default createPlayerUI;

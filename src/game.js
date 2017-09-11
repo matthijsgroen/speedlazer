@@ -2,6 +2,8 @@ import Crafty from "crafty";
 import scaleGame from "./lib/game_scaler";
 import store from "./state";
 import { createPlayer } from "./state/players/actions";
+import "src/scenes/Intro";
+import "src/scenes/Gameplay";
 
 // Setup initial screen size and layers
 Crafty.init(1024, 576, document.getElementById("game"));
@@ -11,8 +13,6 @@ window.addEventListener("resize", scaleGame);
 setTimeout(scaleGame, 0);
 
 import ControlScheme from "./components/control-scheme";
-import "./ui/player-ui";
-import "./game/ships";
 
 store.dispatch(createPlayer(1, "#FF0000"));
 store.dispatch(createPlayer(2, "#00FF00"));
@@ -35,7 +35,8 @@ Crafty.e("Keyboard", ControlScheme)
   })
   .controlScheme("keyboard1");
 
+Crafty.scene("Intro");
+
 Crafty.bind("StartGame", () => {
-  //console.log("Let the games begin!");
-  // Trigger scene switch
+  Crafty.scene("Gameplay");
 });
