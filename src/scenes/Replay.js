@@ -1,8 +1,10 @@
 import Crafty from "crafty";
+import { replayRecording } from "src/state/replay/middleware";
+import registerControls from "../game/controls";
 
 Crafty.scene("Replay", () => {
-  console.log("Replay time!");
-
+  registerControls();
+  replayRecording();
 });
 
 

@@ -9,6 +9,7 @@ import {
 } from "src/state/controls/actions";
 import { spawnShip } from "src/state/ships/actions";
 import { startGame } from "src/state/game/actions";
+import { recordStart } from "src/state/replay/actions";
 import { createSeed } from "src/lib/random";
 
 const ControlScheme = "ControlScheme";
@@ -42,6 +43,7 @@ Crafty.c(ControlScheme, {
     ) {
       const player = this.state.availablePlayers[0];
       if (this.state.gameState.state == "IDLE") {
+        store.dispatch(recordStart());
         store.dispatch(startGame(createSeed()));
         Crafty.trigger("StartGame");
       }

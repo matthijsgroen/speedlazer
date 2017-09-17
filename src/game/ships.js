@@ -28,6 +28,10 @@ Crafty.c(WeaponSystems, {
   init: function() {
     this.bind("UpdatedProps", this.fireWeapons);
   },
+  remove: function() {
+    this.fireWeapon = false;
+    clearInterval(this.fireInterval);
+  },
   fireWeapons: function({ controls }) {
     if (controls.fire && !this.fireWeapon) {
       this.fireWeapon = true;

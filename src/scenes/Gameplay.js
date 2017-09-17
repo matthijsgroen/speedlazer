@@ -3,6 +3,8 @@ import createPlayerUI from "src/ui/player-ui";
 import "src/game/ships";
 import store from "src/state";
 import { random, createSeed } from "src/lib/random";
+import { recordStop } from "src/state/replay/actions";
+import { endGame } from "src/state/game/actions";
 
 let playerUI;
 
@@ -43,6 +45,8 @@ Crafty.scene("Gameplay", () => {
       ts = 0;
     }
     if (!next && ts > 10000) {
+      store.dispatch(endGame());
+      store.dispatch(recordStop());
       console.log("end of gameplay!")
       Crafty.scene("Replay");
       ts = 0;
