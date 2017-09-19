@@ -6,5 +6,3 @@ Crafty.scene("Replay", () => {
   registerControls();
   replayRecording();
 });
-
-

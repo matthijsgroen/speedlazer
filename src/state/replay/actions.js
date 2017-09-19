@@ -7,7 +7,3 @@ export const recordStart = () => ({
 export const recordStop = () => ({
   type: REPLAY_STOP_RECORDING
 });
-
-export const replayRecording = () => ({
-  type: REPLAY_RECORDING
-})

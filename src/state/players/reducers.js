@@ -13,9 +13,9 @@ const playerReducers = (state = initial, action) => {
   if (action.type === gameConstants.END_GAME) {
     const newState = {
       ...state
-    }
+    };
     for (let k of Object.keys(newState)) {
-      newState[k].state = constants.STATE_NO_CONTROLS
+      newState[k].state = constants.STATE_NO_CONTROLS;
     }
     return newState;
   }
