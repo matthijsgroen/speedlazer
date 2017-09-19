@@ -1,5 +1,6 @@
 import * as constants from "./constants";
 import * as controlConstants from "../controls/constants";
+import * as gameConstants from "../game/constants";
 
 const initial = {};
 
@@ -9,6 +10,15 @@ const initialPlayer = {
 };
 
 const playerReducers = (state = initial, action) => {
+  if (action.type === gameConstants.END_GAME) {
+    const newState = {
+      ...state
+    };
+    for (let k of Object.keys(newState)) {
+      newState[k].state = constants.STATE_NO_CONTROLS;
+    }
+    return newState;
+  }
   if (action.type === constants.CREATE_PLAYER) {
     return {
       ...state,

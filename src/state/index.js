@@ -1,4 +1,6 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import replayMiddleWare from "./replay/middleware";
+
 import playerReducers from "./players/reducers";
 import controlReducers from "./controls/reducers";
 import shipReducers from "./ships/reducers";
@@ -13,6 +15,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(applyMiddleware(replayMiddleWare))
 );
 export default store;

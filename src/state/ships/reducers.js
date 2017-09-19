@@ -1,4 +1,5 @@
 import * as constants from "./constants";
+import * as gameConst from "../game/constants";
 
 const initial = {};
 
@@ -12,10 +13,13 @@ const initialShip = {
 };
 
 const shipReducers = (state = initial, action) => {
+  if (action.type === gameConst.END_GAME) {
+    return initial;
+  }
   if (action.type === constants.SPAWN_SHIP) {
     return {
       ...state,
-      [action.id]: {
+      [action.playerId]: {
         ...initialShip,
         controlScheme: action.controlScheme,
         playerId: action.playerId

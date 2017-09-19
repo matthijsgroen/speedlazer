@@ -8,6 +8,9 @@ import {
   attachControls
 } from "src/state/controls/actions";
 import { spawnShip } from "src/state/ships/actions";
+import { startGame } from "src/state/game/actions";
+import { recordStart } from "src/state/replay/actions";
+import { createSeed } from "src/lib/random";
 
 const ControlScheme = "ControlScheme";
 
@@ -16,6 +19,8 @@ const selectAttachedPlayer = (state, identifier) => {
   if (!playerId) return null;
   return state.players[playerId];
 };
+
+const selectGameState = state => state.gameState;
 
 const selectAvailablePlayers = state => {
   const result = [];
@@ -37,6 +42,11 @@ Crafty.c(ControlScheme, {
       this.state.availablePlayers.length
     ) {
       const player = this.state.availablePlayers[0];
+      if (this.state.gameState.state == "IDLE") {
+        store.dispatch(recordStart());
+        store.dispatch(startGame(createSeed()));
+        Crafty.trigger("StartGame");
+      }
       store.dispatch(spawnShip(this.controlIdentifier, player.playerId));
       store.dispatch(attachControls(this.controlIdentifier, player.playerId));
     }
@@ -66,7 +76,8 @@ Crafty.c(ControlScheme, {
     store.dispatch(addControlScheme(identifier));
     this.mapState(state => ({
       attachedPlayer: selectAttachedPlayer(state, this.controlIdentifier),
-      availablePlayers: selectAvailablePlayers(state)
+      availablePlayers: selectAvailablePlayers(state),
+      gameState: selectGameState(state)
     }));
   }
 });
