@@ -1,3 +1,6 @@
 export const START_GAME = "START_GAME";
 export const END_GAME = "END_GAME";
 export const REPLAY_GAME = "REPLAY_GAME";
+export const GAME_STATE_IDLE = "GAME_STATE_IDLE";
+export const GAME_STATE_PLAYING = "GAME_STATE_PLAYING";
+export const GAME_STATE_REPLAY = "GAME_STATE_REPLAY";

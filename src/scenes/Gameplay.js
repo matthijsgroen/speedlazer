@@ -27,14 +27,16 @@ Crafty.scene(
     playerUI = createPlayerUI();
     const r = random(getSeed());
 
-    const levelData = Array(10).fill(1).map(() => ({
-      ts: Math.round(300 + r() * 3500),
-      enemy: {
-        x: 1040,
-        y: Math.round(r() * 600 + 40),
-        vx: -Math.round(r() * 100 + 40)
-      }
-    }));
+    const levelData = Array(10)
+      .fill(1)
+      .map(() => ({
+        ts: Math.round(300 + r() * 3500),
+        enemy: {
+          x: 1040,
+          y: Math.round(r() * 600 + 40),
+          vx: -Math.round(r() * 100 + 40)
+        }
+      }));
 
     let next = levelData.shift();
     let ts = 0;

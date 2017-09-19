@@ -11,6 +11,7 @@ import { spawnShip } from "src/state/ships/actions";
 import { startGame } from "src/state/game/actions";
 import { recordStart } from "src/state/replay/actions";
 import { createSeed } from "src/lib/random";
+import { GAME_STATE_IDLE, GAME_STATE_PLAYING } from "src/state/game/constants";
 
 const ControlScheme = "ControlScheme";
 
@@ -20,7 +21,7 @@ const selectAttachedPlayer = (state, identifier) => {
   return state.players[playerId];
 };
 
-const selectGameState = state => state.gameState;
+const selectGameState = state => state.gameState.state;
 
 const selectAvailablePlayers = state => {
   const result = [];
@@ -35,6 +36,11 @@ Crafty.c(ControlScheme, {
   init: function() {
     this.requires([Connect, Props].join(","));
   },
+  _dispatchControl: function(mutation) {
+    if (!this.state.attachedPlayer) return;
+    if (this.state.gameState !== GAME_STATE_PLAYING) return;
+    store.dispatch(controlAction(this.controlIdentifier, mutation));
+  },
   fire: function(value) {
     if (
       value > 0 &&
@@ -42,7 +48,7 @@ Crafty.c(ControlScheme, {
       this.state.availablePlayers.length
     ) {
       const player = this.state.availablePlayers[0];
-      if (this.state.gameState.state == "IDLE") {
+      if (this.state.gameState == GAME_STATE_IDLE) {
         store.dispatch(recordStart());
         store.dispatch(startGame(createSeed()));
         Crafty.trigger("StartGame");
@@ -52,24 +58,19 @@ Crafty.c(ControlScheme, {
     }
 
     // Maybe check if there is a weapon to fire or if firing weapons is enabled.
-    if (!this.state.attachedPlayer) return;
-    store.dispatch(controlAction(this.controlIdentifier, { fire: value }));
+    this._dispatchControl({ fire: value });
   },
   up: function(value) {
-    if (!this.state.attachedPlayer) return;
-    store.dispatch(controlAction(this.controlIdentifier, { up: value }));
+    this._dispatchControl({ up: value });
   },
   down: function(value) {
-    if (!this.state.attachedPlayer) return;
-    store.dispatch(controlAction(this.controlIdentifier, { down: value }));
+    this._dispatchControl({ down: value });
   },
   left: function(value) {
-    if (!this.state.attachedPlayer) return;
-    store.dispatch(controlAction(this.controlIdentifier, { left: value }));
+    this._dispatchControl({ left: value });
   },
   right: function(value) {
-    if (!this.state.attachedPlayer) return;
-    store.dispatch(controlAction(this.controlIdentifier, { right: value }));
+    this._dispatchControl({ right: value });
   },
   controlScheme: function(identifier) {
     this.controlIdentifier = identifier;
