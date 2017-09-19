@@ -19,6 +19,15 @@ const playerReducers = (state = initial, action) => {
     }
     return newState;
   }
+  if (action.type === gameConstants.REPLAY_GAME) {
+    const newState = {
+      ...state
+    };
+    for (let k of Object.keys(newState)) {
+      newState[k].score = 0;
+    }
+    return newState;
+  }
   if (action.type === constants.CREATE_PLAYER) {
     return {
       ...state,
@@ -26,6 +35,16 @@ const playerReducers = (state = initial, action) => {
         ...initialPlayer,
         playerId: action.playerId,
         color: action.color
+      }
+    };
+  }
+  if (action.type === constants.SCORE_POINTS) {
+    const player = state[action.playerId];
+    return {
+      ...state,
+      [action.playerId]: {
+        ...player,
+        score: player.score + action.points
       }
     };
   }

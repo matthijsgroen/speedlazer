@@ -1,3 +1,4 @@
 export const CREATE_PLAYER = "CREATE_PLAYER";
 export const STATE_NO_CONTROLS = "STATE_NO_CONTROLS";
 export const STATE_PLAYING = "STATE_PLAYING";
+export const SCORE_POINTS = "SCORE_POINTS";

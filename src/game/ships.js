@@ -2,6 +2,8 @@ import Crafty from "crafty";
 import Connect from "../components/connect";
 import Props from "../components/props";
 import InScreen from "../systems/InScreen";
+import store from "src/state";
+import { scorePoints } from "src/state/players/actions";
 
 InScreen.start();
 
@@ -22,6 +24,15 @@ Crafty.c(ControllableShip, {
   }
 });
 
+Crafty.c("Damage", {
+  init: function() {
+  },
+  damage: function(amount, type, onHit) {
+    this._damage = { amount, type };
+    this._onHit = onHit;
+  }
+});
+
 const WeaponSystems = "WeaponSystems";
 
 Crafty.c(WeaponSystems, {
@@ -35,6 +46,7 @@ Crafty.c(WeaponSystems, {
   fireWeapons: function({ controls }) {
     if (controls.fire && !this.fireWeapon) {
       this.fireWeapon = true;
+      this.shoot();
       this.fireInterval = setInterval(() => {
         this.shoot();
       }, 100);
@@ -44,15 +56,19 @@ Crafty.c(WeaponSystems, {
     }
   },
   shoot: function() {
-    Crafty.e("2D, WebGL, Color, Motion, OnlyInScreen")
+    const bullet = Crafty.e("2D, WebGL, Color, Motion, OnlyInScreen, Damage")
       .attr({
         x: this.x + this.w,
         y: this.y + this.h / 2,
-        vx: 600,
+        vx: 500,
         w: 20,
         h: 5
       })
-      .color("#FFDDDD");
+      .color("#FFDDDD")
+    bullet.damage(1, "impact", (damageDone, kill, points) => {
+      bullet.destroy()
+      store.dispatch(scorePoints(this.state.player.playerId, points));
+    });
   }
 });
 

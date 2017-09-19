@@ -13,9 +13,32 @@ const getSeed = () => store.getState().gameState.seed || createSeed();
 
 Crafty.c("Enemy", {
   init: function() {
-    this.requires("WebGL, 2D, Color, Motion, OnlyInScreen");
+    this.requires("WebGL, 2D, Color, Motion, OnlyInScreen, Health");
     this.color("#0000FF");
-    this.attr({ w: 40, h: 40 });
+    this.attr({ w: 40, h: 40, health: 3, pointsOnHit: 5, pointsOnKill: 10 });
+    this.bind("Kill", () => {
+      this.destroy();
+    });
+  }
+});
+
+Crafty.c("Health", {
+  init: function() {
+    this.requires("Collision");
+    this.checkHits("Damage");
+    this.bind("HitOn", hitData => {
+      hitData.map(e => {
+        const receiving = e.obj._damage.amount;
+        const callback = e.obj._onHit;
+        if (receiving > this.health) {
+          callback(this.health, true, this.pointsOnKill);
+        } else {
+          callback(receiving, false, this.pointsOnHit);
+        }
+        this.health -= receiving;
+        if (this.health < 0) this.trigger("Kill", e.obj);
+      });
+    });
   }
 });
 
