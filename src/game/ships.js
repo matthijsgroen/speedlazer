@@ -25,8 +25,7 @@ Crafty.c(ControllableShip, {
 });
 
 Crafty.c("Damage", {
-  init: function() {
-  },
+  init: function() {},
   damage: function(amount, type, onHit) {
     this._damage = { amount, type };
     this._onHit = onHit;
@@ -64,9 +63,9 @@ Crafty.c(WeaponSystems, {
         w: 20,
         h: 5
       })
-      .color("#FFDDDD")
+      .color("#FFDDDD");
     bullet.damage(1, "impact", (damageDone, kill, points) => {
-      bullet.destroy()
+      bullet.destroy();
       store.dispatch(scorePoints(this.state.player.playerId, points));
     });
   }

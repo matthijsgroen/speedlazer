@@ -10,4 +10,4 @@ export const scorePoints = (playerId, points) => ({
   type: SCORE_POINTS,
   playerId,
   points
-})
+});
