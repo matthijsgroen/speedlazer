@@ -23,22 +23,31 @@ const registerControls = () => {
     })
     .controlScheme("keyboard1");
 
+  const GAMEPAD_ANALOG_PRECISION = 10;
+
   Crafty.e(Gamepad, ControlScheme)
     .bind("GamepadKeyChange", function(e) {
       if (e.button === 0) this.fire(e.value);
     })
     .bind("GamepadAxisChange", function(e) {
-      if (e.axis === 0) { // left stick, left/right
-        this.right(e.value);
+      const raw = Math.round(e.value * GAMEPAD_ANALOG_PRECISION);
+      if (e.axis === 0) {
+        // left stick, left/right
+        if (!this._previousXAxis || this._previousXAxis !== raw) {
+          this.right(raw / GAMEPAD_ANALOG_PRECISION);
+        }
+        this._previousXAxis = raw;
       }
-      if (e.axis === 1) { // left stick, up/down
-        this.down(e.value);
+      if (e.axis === 1) {
+        // left stick, up/down
+        if (!this._previousYAxis || this._previousYAxis !== raw) {
+          this.down(raw / GAMEPAD_ANALOG_PRECISION);
+        }
+        this._previousYAxis = raw;
       }
-
     })
     .gamepad(0)
     .controlScheme("gamepad1");
-
 };
 
 export default registerControls;
