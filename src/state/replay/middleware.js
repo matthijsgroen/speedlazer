@@ -27,6 +27,7 @@ export const replayRecording = () => {
 
       if (replay.frames.length > 0) {
         nextFrame = replay.frames.shift();
+        replayHandler(fd); // for if there are more actions in single frame
       } else {
         Crafty.unbind("EnterFrame", replayHandler);
         store.dispatch(endGame());
