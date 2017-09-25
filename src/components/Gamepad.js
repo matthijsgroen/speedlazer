@@ -85,9 +85,9 @@ Crafty.c("Gamepad", {
   },
 
   /* Constructor
-			 *
-			 * Specify index of gamepad as first argument.
-			 */
+   *
+   * Specify index of gamepad as first argument.
+   */
   gamepad: function(gamepadIndex) {
     this._gamepadIndex = gamepadIndex || 0;
     this._timestamp = 0;
@@ -99,6 +99,8 @@ Crafty.c("Gamepad", {
     return this;
   }
 });
+
+export default "Gamepad";
 
 /* Controls an entity with a gamepad.
  *

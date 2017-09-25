@@ -1,5 +1,6 @@
 import Crafty from "crafty";
 import ControlScheme from "../components/control-scheme";
+import Gamepad from "../components/Gamepad";
 
 const registerControls = () => {
   // TODO: Clear earlier control schemes!
@@ -21,6 +22,23 @@ const registerControls = () => {
       if (e.key === Crafty.keys.RIGHT_ARROW) this.right(0);
     })
     .controlScheme("keyboard1");
+
+  Crafty.e(Gamepad, ControlScheme)
+    .bind("GamepadKeyChange", function(e) {
+      if (e.button === 0) this.fire(e.value);
+    })
+    .bind("GamepadAxisChange", function(e) {
+      if (e.axis === 0) { // left stick, left/right
+        this.right(e.value);
+      }
+      if (e.axis === 1) { // left stick, up/down
+        this.down(e.value);
+      }
+
+    })
+    .gamepad(0)
+    .controlScheme("gamepad1");
+
 };
 
 export default registerControls;
