@@ -12,5 +12,6 @@ export const replayGame = seed => ({
 });
 
 export const endGame = () => ({
-  type: END_GAME
+  type: END_GAME,
+  replay: true
 });
